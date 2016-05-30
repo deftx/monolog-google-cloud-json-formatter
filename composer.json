@@ -1,11 +1,15 @@
 {
-	"name": "superbalist/monolog-google-cloud-json-formatter",
+	"name": "deftx/monolog-google-cloud-json-formatter",
 	"description": "A Monolog extension for formatting log entries for Google Cloud Logging",
 	"license": "MIT",
 	"authors": [
 		{
 			"name": "Superbalist.com a division of Takealot Online (Pty) Ltd",
 			"email": "info@superbalist.com"
+		},
+		{
+			"name": "Rob Vella",
+			"email": "me@robvella.com"
 		}
 	],
 	"require": {
