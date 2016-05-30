@@ -4,7 +4,6 @@ use Monolog\Formatter\JsonFormatter;
 
 class GoogleCloudJsonFormatter extends JsonFormatter
 {
-
     /**
      * {@inheritdoc}
      */
@@ -45,7 +44,7 @@ class GoogleCloudJsonFormatter extends JsonFormatter
         /** @var \DateTime $dt */
 
         $formatted = [
-            'message' => $record['message'],
+            'message' => '[' . gethostname() . '] ' .$record['message'],
             'severity' => $record['level_name'],
             'timestamp' => [
                 'seconds' => $dt->getTimestamp(),
