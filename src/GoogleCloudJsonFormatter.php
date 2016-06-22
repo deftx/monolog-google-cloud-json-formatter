@@ -51,6 +51,7 @@ class GoogleCloudJsonFormatter extends JsonFormatter
 
         $formatted = [
             'message' => '[' . gethostname() . '] ' . $record['message'],
+            'messageOnly' => $record['message'],
             'severity' => $record['level_name'],
             'timestamp' => [
                 'seconds' => $dt->getTimestamp(),
