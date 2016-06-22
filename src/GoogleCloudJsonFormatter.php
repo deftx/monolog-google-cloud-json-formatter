@@ -45,13 +45,15 @@ class GoogleCloudJsonFormatter extends JsonFormatter
 
         // Test
         $githead = trim(@file_get_contents(APP_DIR."/.githead"));
+        $originalMessage = $record['message'];
+        
         if ($githead) {
             $record['message'] = '(' . $githead . ') ' . $record['message'];
         }
 
         $formatted = [
             'message' => '[' . gethostname() . '] ' . $record['message'],
-            'messageOnly' => $record['message'],
+            'messageOnly' => $originalMessage,
             'severity' => $record['level_name'],
             'timestamp' => [
                 'seconds' => $dt->getTimestamp(),
