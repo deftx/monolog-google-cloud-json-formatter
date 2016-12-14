@@ -67,6 +67,8 @@ class GoogleCloudJsonFormatter extends JsonFormatter
 
         if (!empty($formatted['route_parameters'])) {
           $formatted['severity'] = 'DEBUG';
+        } else if (preg_match("/< 200|> GET \//", $formatted['messageOnly'])) {
+          $formatted = [];
         }
         
         return $formatted;
