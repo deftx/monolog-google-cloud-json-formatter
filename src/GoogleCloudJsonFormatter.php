@@ -65,9 +65,8 @@ class GoogleCloudJsonFormatter extends JsonFormatter
         // merge in anything else from context and extra as structured metadata
         $formatted = array_merge($record['context'], $record['extra'], $formatted);
 
-        if (!empty($formatted['route_parameters'])) {
-          $formatted['severity'] = 'DEBUG';
-        } else if (preg_match("/< 200|> GET \//", $formatted['messageOnly'])) {
+        // Drop un-necessary messages
+        if (!empty($formatted['route_parameters']) || preg_match("/< 200|> GET \//", $formatted['messageOnly'])) {
           $formatted = [];
         }
         
