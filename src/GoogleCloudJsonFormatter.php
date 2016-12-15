@@ -67,7 +67,7 @@ class GoogleCloudJsonFormatter extends JsonFormatter
 
         // Drop un-necessary messages
         if (!empty($formatted['route_parameters']) || preg_match("/< 200|> GET \//", $formatted['messageOnly'])) {
-          return '';
+          return null;
         }
        
         return $formatted;
