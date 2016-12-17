@@ -66,7 +66,7 @@ class GoogleCloudJsonFormatter extends JsonFormatter
         $formatted = array_merge($record['context'], $record['extra'], $formatted);
 
         // Drop un-necessary messages
-        if (!empty($formatted['route_parameters']) || preg_match("/< (200|503)|> GET \//", $formatted['messageOnly'])) {
+        if (!empty($formatted['route_parameters']) || preg_match("/< (200|503|404)|> GET \/|NotFoundHttpException/", $formatted['messageOnly'])) {
           return '';
         }
        
