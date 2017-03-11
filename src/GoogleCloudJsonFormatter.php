@@ -9,9 +9,8 @@ class GoogleCloudJsonFormatter extends JsonFormatter
      */
     public function format(array $record)
     {
-        return json_encode(
-            $this->translateRecordForGoogleCloudLoggingFormat($record)
-        ) . ($this->appendNewline ? "\n" : '');
+        $record = $this->translateRecordForGoogleCloudLoggingFormat($record);
+        return $record ? $this->toJson($record) . ($this->appendNewline ? "\n" : '') : null;
     }
 
     /**
@@ -24,10 +23,12 @@ class GoogleCloudJsonFormatter extends JsonFormatter
     {
         $records = array_map(
             function ($record) {
-                return $this->translateRecordForGoogleCloudLoggingFormat($record);
+                $formatted = $this->translateRecordForGoogleCloudLoggingFormat($record);
+                return $formatted ? $formatted : null; 
             },
             $records
         );
+        
         return json_encode($records);
     }
 
@@ -67,7 +68,7 @@ class GoogleCloudJsonFormatter extends JsonFormatter
 
         // Drop un-necessary messages
         if (!empty($formatted['route_parameters']) || preg_match("/< (200|503|404)|> GET \/|NotFoundHttpException/", $formatted['messageOnly'])) {
-          return '';
+          return;
         }
        
         return $formatted;
